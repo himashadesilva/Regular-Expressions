@@ -28,21 +28,29 @@ public class RegEx {
     public static void search(char[] letters, BufferedReader br) throws IOException {
         String line;
         char[] array;
-        boolean printed=false;
+        boolean valid,print;
+        int count =0;
         while ((line = br.readLine()) != null) {
             array = line.toCharArray();
-            printed = false;
+
+            print = true;
             for (char x : array) {
+                valid = false;
                 for (char y : letters) {
                     if (x == y) {
-                        System.out.println(line);
-                        printed = true;
+                        //System.out.println(line);
+                        valid = true;
                         break;
                     }
                 }
-                if(printed)
+                if(!valid){
+                    print = false;
                     break;
+                }
             }
+            if(print)
+                System.out.println(line);
+
         }
 
     }
