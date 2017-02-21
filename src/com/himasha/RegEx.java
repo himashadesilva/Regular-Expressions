@@ -11,12 +11,12 @@ public class RegEx {
     public static void main(String[] args) {
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(args[0]));
+            BufferedReader br = new BufferedReader(new FileReader(args[0])); //take the file to buffered reader
 
-            char[] letters = args[1].toCharArray();
-            search(letters,br);
+            char[] letters = args[1].toCharArray();  //put the 2nd argument to char array
+            search(letters,br);   //call search method passing buffered reader and char array
 
-        } catch (java.io.FileNotFoundException e) {
+        } catch (java.io.FileNotFoundException e) {  //handle exception if there is not file exist in file reader
             System.out.println("The file not found");
 
         } catch (IOException e) {
@@ -30,25 +30,25 @@ public class RegEx {
         char[] array;
         boolean valid,print;
         int count =0;
-        while ((line = br.readLine()) != null) {
-            array = line.toCharArray();
+        while ((line = br.readLine()) != null) {  //read line by line
+            array = line.toCharArray();  //put line to char array
 
             print = true;
             for (char x : array) {
                 valid = false;
                 for (char y : letters) {
-                    if (x == y) {
-                        //System.out.println(line);
+                    if (x == y) { //if the char in line is available given char array , it is valid
+
                         valid = true;
                         break;
                     }
                 }
-                if(!valid){
+                if(!valid){   //if there any not valid char , it cannot be printed
                     print = false;
                     break;
                 }
             }
-            if(print)
+            if(print) //if it is good to print, (all chars are valid) prrint the line.
                 System.out.println(line);
 
         }
